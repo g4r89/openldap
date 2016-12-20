@@ -75,3 +75,5 @@ fusiondirectory-insert-schema -i /etc/openldap/schema/cosine.schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/inetorgperson.schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/nis.schema
 fusiondirectory-insert-schema
+
+systemctl enable --now httpd
