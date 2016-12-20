@@ -58,7 +58,7 @@ gpg --export -a "Fusiondirectory Archive Manager <contact@fusiondirectory.org>" 
 cp FD-archive-key /etc/pki/rpm-gpg/RPM-GPG-KEY-FUSIONDIRECTORY
 rpm --import  /etc/pki/rpm-gpg/RPM-GPG-KEY-FUSIONDIRECTORY
 
-cat <<'EOF'> /etc/yum.repo.d/fusion.repo
+cat <<'EOF'> /etc/yum.repos.d/fusion.repo
 [fusiondirectory]
 name=Fusiondirectory Packages for RHEL / CentOS 7
 baseurl=http://repos.fusiondirectory.org/rhel7/RPMS
