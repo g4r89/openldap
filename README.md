@@ -98,3 +98,6 @@ yum install -y fusiondirectory-plugin-samba fusiondirectory-plugin-samba-schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba-fd-conf.schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba.schema
 
+yum install -y fusiondirectory-plugin-mail fusiondirectory-plugin-mail-schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd-conf.schema
