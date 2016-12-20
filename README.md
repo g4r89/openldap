@@ -85,3 +85,16 @@ fusiondirectory-insert-schema -i /etc/openldap/schema/nis.schema
 fusiondirectory-insert-schema
 
 systemctl enable --now httpd
+
+yum install -y fusiondirectory-plugin-ldapdump fusiondirectory-plugin-ldapmanager -y
+
+yum install -y fusiondirectory-plugin-systems fusiondirectory-plugin-systems-schema fusiondirectory-plugin-argonaut-schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/service-fd.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/systems-fd-conf.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/systems-fd.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/argonaut-fd.schema
+
+yum install -y fusiondirectory-plugin-samba fusiondirectory-plugin-samba-schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba-fd-conf.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba.schema
+
