@@ -23,3 +23,14 @@ enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-FUSIONDIRECTORY
 EOF
+
+yum install -y fusiondirectory fusiondirectory-schema schema2ldif
+
+fusiondirectory-insert-schema -i /etc/openldap/schema/cosine.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/inetorgperson.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/nis.schema
+fusiondirectory-insert-schema
+
+service httpd restart
+
+http://IP/fusiondirectory/
