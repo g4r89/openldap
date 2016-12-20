@@ -1,7 +1,7 @@
 # openldap
 centos7+openldap+fusiondirectory
 ```bash
-yum -y update && yum install -y epel-release
+yum install -y epel-release && yum -y update
 yum -y install openldap-servers openldap-clients
 
 cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG 
