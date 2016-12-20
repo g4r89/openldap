@@ -52,3 +52,32 @@ olcAccess: {2}to * by dn="cn=Manager,dc=sk2,dc=su" write by * read
 EOF
 
 ldapadd -Y EXTERNAL -H ldapi:/// -f chdomain.ldif
+
+gpg --keyserver keys.gnupg.net --recv-key 62B4981F 
+gpg --export -a "Fusiondirectory Archive Manager <contact@fusiondirectory.org>" > FD-archive-key
+cp FD-archive-key /etc/pki/rpm-gpg/RPM-GPG-KEY-FUSIONDIRECTORY
+rpm --import  /etc/pki/rpm-gpg/RPM-GPG-KEY-FUSIONDIRECTORY
+
+cat <<'EOF'> /etc/yum.repo.d/fusion.repo
+[fusiondirectory]
+name=Fusiondirectory Packages for RHEL / CentOS 7
+baseurl=http://repos.fusiondirectory.org/rhel7/RPMS
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-FUSIONDIRECTORY
+
+[fusiondirectory-extra]
+name=Fusiondirectory Packages for RHEL / CentOS 7
+baseurl=http://repos.fusiondirectory.org/rhel7-rpm-extra/RPMS/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-FUSIONDIRECTORY
+EOF
+
+yum install -y fusiondirectory
+yum install -y fusiondirectory-schema schema2ldif
+
+fusiondirectory-insert-schema -i /etc/openldap/schema/cosine.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/inetorgperson.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/nis.schema
+fusiondirectory-insert-schema
