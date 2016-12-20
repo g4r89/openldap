@@ -42,7 +42,7 @@ replace: olcAccess
 olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" read by
   dn.base="cn=Manager,dc=example,dc=com" read by * none
 
-dn: olcDatabase={2}bdb,cn=config
+dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 add: olcAccess
 olcAccess: {0}to attrs=userPassword,shadowLastChange by
