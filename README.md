@@ -8,7 +8,7 @@ cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
 chown ldap. /var/lib/ldap/DB_CONFIG
 
 sed -i.bak '/SELINUX/s/enforcing/disable/' /etc/selinux/config
-systemctl disable --now firewald
+systemctl stop firewald && systemctl disable firewald
 systemctl enable --now slapd
 
 slappasswd
