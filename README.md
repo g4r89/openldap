@@ -31,7 +31,7 @@ olcSuffix: dc=sk2,dc=su
 dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcRootDN
-olcRootDN: cn=Manager,dc=sk2,dc=su
+olcRootDN: cn=admin,dc=sk2,dc=su
 
 dn: olcDatabase={2}hdb,cn=config
 changetype: modify
@@ -42,7 +42,7 @@ dn: olcDatabase={1}monitor,cn=config
 changetype: modify
 replace: olcAccess
 olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" read by
-  dn.base="cn=Manager,dc=sk2,dc=su" read by * none
+  dn.base="cn=admin,dc=sk2,dc=su" read by * none
 EOF
 
 ldapadd -Y EXTERNAL -H ldapi:/// -f chdomain.ldif
