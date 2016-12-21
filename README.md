@@ -1,5 +1,5 @@
 # openldap
-centos7+openldap+fusiondirectory+nginx
+# centos7+openldap+fusiondirectory+nginx
 ```bash
 yum install -y epel-release && yum -y update
 yum -y install openldap-servers openldap-clients
