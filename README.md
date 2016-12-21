@@ -107,9 +107,7 @@ server {
 }
 EOF
 
-vi /etc/php.ini
-cgi.fix_pathinfo=0
-expose_php=off
+sed -i.bak 's/; cgi.fix_pathinfo=1/cgi.fix_pathinfo=1/;/expose_php/s/On/Off/' /etc/php.ini
 
 systemctl enable --now php-fpm
 systemctl enable --now nginx
