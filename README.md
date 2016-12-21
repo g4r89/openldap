@@ -128,6 +128,7 @@ EOF
 
 vi /etc/php.ini
 cgi.fix_pathinfo=0
+expose_php=off
 
 systemctl enable --now php-fpm
 systemctl enable --now nginx
