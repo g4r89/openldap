@@ -85,9 +85,7 @@ fusiondirectory-insert-schema
 ```
 # nginx + php-fpm + apc
 ```bash
-yum install nginx php-fpm php-cli php-mysql php-gd php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc php-magickwand php-magpierss php-mbstring php-mcrypt php-mssql php-shout php-snmp php-soap php-tidy
-
-yum install -y php-pecl-apc
+yum install -y nginx php-fpm php-pecl-apc
 
 cat <<'EOF'> /etc/nginx/conf.d/fd.conf
 server {
