@@ -1,5 +1,5 @@
 # openldap
-centos7+openldap+fusiondirectory
+centos7+openldap+fusiondirectory+nginx
 ```bash
 yum install -y epel-release && yum -y update
 yum -y install openldap-servers openldap-clients
@@ -76,31 +76,12 @@ gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-FUSIONDIRECTORY
 EOF
 
-yum install -y fusiondirectory
-yum install -y fusiondirectory-schema schema2ldif
+yum install -y fusiondirectory fusiondirectory-schema schema2ldif
 
 fusiondirectory-insert-schema -i /etc/openldap/schema/cosine.schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/inetorgperson.schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/nis.schema
 fusiondirectory-insert-schema
-
-systemctl enable --now httpd
-
-yum install -y fusiondirectory-plugin-ldapdump fusiondirectory-plugin-ldapmanager -y
-
-yum install -y fusiondirectory-plugin-systems fusiondirectory-plugin-systems-schema fusiondirectory-plugin-argonaut-schema
-fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/service-fd.schema
-fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/systems-fd-conf.schema
-fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/systems-fd.schema
-fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/argonaut-fd.schema
-
-yum install -y fusiondirectory-plugin-samba fusiondirectory-plugin-samba-schema
-fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba-fd-conf.schema
-fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba.schema
-
-yum install -y fusiondirectory-plugin-mail fusiondirectory-plugin-mail-schema
-fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd.schema
-fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd-conf.schema
 ```
 # nginx + php-fpm + apc
 ```bash
@@ -132,4 +113,23 @@ expose_php=off
 
 systemctl enable --now php-fpm
 systemctl enable --now nginx
+```
+# install plugins
+``bash
+yum install -y fusiondirectory-plugin-ldapdump fusiondirectory-plugin-ldapmanager -y
+
+yum install -y fusiondirectory-plugin-systems fusiondirectory-plugin-systems-schema fusiondirectory-plugin-argonaut-schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/service-fd.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/systems-fd-conf.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/systems-fd.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/argonaut-fd.schema
+
+yum install -y fusiondirectory-plugin-samba fusiondirectory-plugin-samba-schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba-fd-conf.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba.schema
+
+yum install -y fusiondirectory-plugin-mail fusiondirectory-plugin-mail-schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd.schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd-conf.schema
+```
 
