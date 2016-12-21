@@ -115,7 +115,7 @@ systemctl enable --now php-fpm
 systemctl enable --now nginx
 ```
 # install plugins
-``bash
+```bash
 yum install -y fusiondirectory-plugin-ldapdump fusiondirectory-plugin-ldapmanager -y
 
 yum install -y fusiondirectory-plugin-systems fusiondirectory-plugin-systems-schema fusiondirectory-plugin-argonaut-schema
