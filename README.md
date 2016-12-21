@@ -101,9 +101,34 @@ fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba.sche
 yum install -y fusiondirectory-plugin-mail fusiondirectory-plugin-mail-schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd.schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd-conf.schema
+```
+# nginx + php-fpm + apc
+```bash
+yum install nginx php-fpm php-cli php-mysql php-gd php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc php-magickwand php-magpierss php-mbstring php-mcrypt php-mssql php-shout php-snmp php-soap php-tidy
 
+yum install -y php-pecl-apc
 
-yum install nginx php-fpm perl perl-core
-wget -qO- http://repos.fusiondirectory.org/sources/1.0/fusiondirectory/fusiondirectory-1.0.17.tar.gz | tar xvz -C /opt/fd
+cat <<'EOF'> /etc/nginx/conf.d/fd.conf
+server {
+  listen 80;
+  root /usr/share/fusiondirectory/html;
+  index index.php;
+ 
+  server_name fusiondirectory.acme.com;
+ 
+  location ~ ^/.*\.php(/|$) {
+    expires off; # do not cache dynamic content
+    fastcgi_pass 127.0.0.1:9000;
+    fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+    fastcgi_param DOCUMENT_ROOT $realpath_root;
+    include /etc/nginx/fastcgi_params; # see /etc/nginx/fastcgi_params
+  }
+}
+EOF
 
-perl-Path-Class perl-LDAP perl-MIME-Base32
+vi /etc/php.ini
+cgi.fix_pathinfo=0
+
+systemctl enable --now php-fpm
+systemctl enable --now nginx
+
