@@ -101,3 +101,9 @@ fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba.sche
 yum install -y fusiondirectory-plugin-mail fusiondirectory-plugin-mail-schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd.schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd-conf.schema
+
+
+yum install nginx php-fpm perl perl-core
+wget -qO- http://repos.fusiondirectory.org/sources/1.0/fusiondirectory/fusiondirectory-1.0.17.tar.gz | tar xvz -C /opt/fd
+
+perl-Path-Class perl-LDAP perl-MIME-Base32
