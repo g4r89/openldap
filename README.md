@@ -12,6 +12,7 @@ chown ldap. /var/lib/ldap/DB_CONFIG
 sed -i.bak '/SELINUX/s/enforcing/disable/' /etc/selinux/config
 systemctl disable --now firewalld
 systemctl enable --now slapd
+reboot
 
 slappasswd
 
