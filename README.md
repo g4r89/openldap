@@ -9,10 +9,10 @@ yum -y install openldap-servers openldap-clients
 cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG 
 chown ldap. /var/lib/ldap/DB_CONFIG
 
-sed -i.bak '/SELINUX/s/enforcing/disable/' /etc/selinux/config
+sed -i.bak '/SELINUX/s/enforcing/permissive/' /etc/selinux/config
+setenforce 0
 systemctl disable --now firewalld
 systemctl enable --now slapd
-reboot
 
 slappasswd
 
