@@ -160,5 +160,7 @@ fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/samba.sche
 yum install -y fusiondirectory-plugin-mail fusiondirectory-plugin-mail-schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd.schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd-conf.schema
-```
 
+yum install -y fusiondirectory-plugin-postfix fusiondirectory-plugin-postfix-schema
+fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/postfix-fd.schema
+```
