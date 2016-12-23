@@ -126,7 +126,7 @@ server {
   root /usr/share/fusiondirectory/html;
   index index.php;
  
-  server_name fusiondirectory.acme.com;
+  server_name fd.sk2.su;
  
   location ~ ^/.*\.php(/|$) {
     expires off; # do not cache dynamic content
