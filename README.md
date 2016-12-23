@@ -164,3 +164,13 @@ fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/mail-fd-co
 yum install -y fusiondirectory-plugin-postfix fusiondirectory-plugin-postfix-schema
 fusiondirectory-insert-schema -i /etc/openldap/schema/fusiondirectory/postfix-fd.schema
 ```
+# install phpldapadmin
+```bash
+
+yum install phpldapadmin
+
+vi /etc/phpldapadmin/config.php
+$servers->setValue('login','attr','dn');
+// $servers->setValue('login','attr','uid');
+$config->custom->appearance['hide_template_warning'] = true;
+
