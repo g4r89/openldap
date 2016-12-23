@@ -173,4 +173,3 @@ vi /etc/phpldapadmin/config.php
 $servers->setValue('login','attr','dn');
 // $servers->setValue('login','attr','uid');
 $config->custom->appearance['hide_template_warning'] = true;
-$servers->setValue('login','bind_id','cn=Manager,dc=sk2,dc=su');
